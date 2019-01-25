@@ -1,0 +1,5 @@
+CCCalima:Cra 24C:Tintal:Sebastian Duque
+CCGranE:Cll 26 #56:Santa Isabel:Daniela Celis
+Condados:Diag 60sur:Kennedy:Juan Gomez
+CCTunal:Cll 22D sur:Tunal:Maria Lopez
+CCMultiplaza:Av Boyaca:Policarpa:Esteban Ramirez
