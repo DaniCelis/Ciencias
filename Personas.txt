@@ -1,0 +1,3 @@
+1:Daniela:Celis:CC:1010:Fe:320320:1234:dan@123:12/12/1212:35:Bogota:Colombia:Bogota:Cra24c:Tintal:Si:2:CCCalima
+2:Natalia:Celis:TI:2020:Fe:120120:4567:nat@456:11/11/1111:08:Washington:USA:Texas:Cll30A:Tunal:No:0:CCGranE
+3:Olga:Garcia:CC:3030:Ma:240240:7890:olg@789:04/04/0440:20:Buenos Aires:Argentina:Maracaibo:Diag30E:Flores:Si:1:Condados
