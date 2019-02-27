@@ -8,11 +8,13 @@
 #include <cstdlib>
 #include "multilistas2.h"
 
-#define MAX 208
+#define MAX 208      
 #define MAX2 85
 #define MAX3 39
 #define MAX4 40
 
+
+// Funcion para recuperar la fecha del sistema 
 string fecha(){
 	time_t t;
   	struct tm *tm;
@@ -24,6 +26,8 @@ string fecha(){
 	return fechayhora;
 }
 
+// Funcion para imprimir los datos de un archivo 
+
 void print(FILE *fp){
 	char ch;
 	
@@ -33,190 +37,212 @@ void print(FILE *fp){
 }
 //void editar(string datos);
 
+// Funcion con la cual se hara los operaciones,practicamente es el menu donde seleccionar las opciones
 void funcionPrincipal(int opcionPrincipal){
 	
 //	cout<<"--------------------------------------------------------------Cargar Personas-------------------------------------------------------"<<endl;
 	
-	char line[MAX];
-	char id[3];
-    char nombre[10];
-  	char apellido[20];
-    char tipoid[2]; 
-    char cedula[10];
-    char genero[2];
-    char fijo[10];
-    char celular[10];
-    char email[30];
-    char fechaNac[10];
-    char edad[2];
-    char ciudadNac[15];
-    char paisNac[15];
-    char ciudadRes[15];
-    char direccion[30];
-    char barrio[15];
-    char actividad[15];
-    char hijos[2];
-    char numhijos[2];
-    char sucursal[15];
+	char line[MAX];    // Tamaño del archivos persona.txt?
+	char id[3];     // Id de la persona
+    char nombre[10];    // Nombre de la persona
+  	char apellido[20];  // Apellido de la persona
+    char tipoid[2];    // Tipo de id( Tarjeta de identidad, Cedula de ciudadania o Cedula extranjera
+    char cedula[10];   // Numero de identificacion de la persona
+    char genero[2];    // Genero de la persona (M o F)
+    char fijo[10];    //  Numero de fijo de la persona
+    char celular[10];  //Numero de celular de la persona
+    char email[30];   // Email de la persona
+    char fechaNac[10];  // Fecha de nacimiento de la persona
+    char edad[2];     // Edad de la persona
+    char ciudadNac[15];  // Ciudad de nacimiento de la persona
+    char paisNac[15];   // Pais de nacimiento de la persona
+    char ciudadRes[15];  // Ciudad de residencia de la persona
+    char direccion[30];   // Direccion de la persona
+    char barrio[15];   // Bario de la persona
+    char actividad[15];  // Actividad laboral de la persona
+    char hijos[2];    // Tiene o no hijos? (S o N)
+    char numhijos[2]; // Si tiene hijos cuantos hijos tiene 
+    char sucursal[15];  // Nombre de la sucrusal
     
+    //Persona de tipo de dato string
     persona<string> Persona;
     
+    //Abre el archivo denominado Personas.txt
     FILE *archivo=fopen("Personas.txt","rt");
     
-    if(!archivo)            // If the file was not found, then file is 0, i.e. !file=1 or true.
-        cout<<"No existe"<<endl;    // The file was not found.
+    if(!archivo)            // Comprueba que el archivo existe o no
+        cout<<"No existe"<<endl;   
     else
     	cout<<"Existe"<<endl;
-
+    //Contador que ayuda para saber cuantas lineas hay en el archivo
     int i=0;
+    // Lee el archivo
     fgets(line,MAX,archivo);
     cout<<"| Id | Nombre | Apellido | Tipo ID | Cedula | Genero | Fijo | Celular | Email | Fecha Nacimiento |"<<endl;
     cout<<"| Edad | Ciud Naci | Pais Naci | Ciud Resid | Direccion | Barrio | Actividad | Hijos | Num Hijos | Sucursal |"<<endl;
+	// Mientras exista otro linea se repetira el ciclo
     while(!feof(archivo)) {
-        i++;
+        i++; // Aumento de i
+	 // Lee los datos de los archivos y toma una cadena por cada : que encuentra
         sscanf(line,"%[^:]:%[^:]:%[^:]:%[^:]:%[^:]:%[^:]:%[^:]:%[^:]:%[^:]:%[^:]:%[^:]:%[^:]:%[^:]:%[^:]:%[^:]:%[^:]:%[^:]:%[^:]:%[^:]:%[^:]:%[^\n]", id, nombre, apellido, tipoid, cedula, genero, fijo, celular, email, fechaNac, edad, ciudadNac, paisNac, ciudadRes, direccion, barrio, actividad, hijos, numhijos, sucursal); //%[^:]:
     	fflush(stdin);
-    
+    	
     	cout<<"| "<<id<<" | "<<nombre<<" | "<<apellido<<" | "<<tipoid<<" | "<<cedula<<" | "<<genero<<" | "<<fijo<<" | "<<celular<<" | "<<email<<" | "<<fechaNac<<" | "<<endl;
    	    cout<<"| "<<edad<<" | "<<ciudadNac<<" | "<<paisNac<<" | "<<ciudadRes<<" | "<<direccion<<" | "<<barrio<<" | "<<actividad<<" | "<<hijos<<" | "<<numhijos<<" | "<<sucursal<<endl;
-		
+		// Inserta los datos de los archivos a la clase persona
 		Persona.insertarPersona(id, nombre, apellido, tipoid, cedula, genero, fijo, celular, email, fechaNac, edad, ciudadNac, paisNac, ciudadRes, direccion, barrio, actividad, hijos, numhijos, sucursal);
-		
+		//Toma la siguiente linea
 		fgets(line,MAX,archivo);
     }
+	//Muestra cuantas lineas posee el archivo
     cout<<"Line: "<<i<<endl;
     
     //	cout<<"--------------------------------------------------------------Cargar Sucursales-------------------------------------------------------"<<endl;
-    
-	char line2[MAX2];
-	char nombreSuc[20];
-    char direccionSuc[30];
-    char barrioSuc[15];
-    char agenteSuc[20];
+    	
+	char line2[MAX2];  //Tamaño del archivo Sucursales.txt?
+	char nombreSuc[20];  //Nombre de la sucursal
+    char direccionSuc[30];  // Direccion de la sucursal
+    char barrioSuc[15];    //Barrio donde se encuentra la sucursal
+    char agenteSuc[20];    // Nombre del gerente encargado de la sucursal
 	
+	// Sucursal de tipo de dato string
 	Sucursal<string> Sucursal;
 	
+	//Abre el archivo sucursales.txt
 	FILE *sucursales=fopen("Sucursales.txt","rt");
-    
+    //Comprueba si existe sucursales
     if(!sucursales)      
         cout<<"No existe"<<endl;   
-
+    //Auxiliar para ayudarnos a saber cuantos datos se encuentran en el archivo
     int j=0;
+	// Toma la primera linea
     fgets(line2,MAX2,sucursales);
-    
+    	// Ayuda con la impresion de los datos
     	cout<<"| Nombre Sucursal | Direccion Sucursal | Barrio Sucursal | Agente Sucursal | "<<endl;
-    
+    //While que se ejutara mientras exista otro salto de linea
     while(!feof(sucursales)) {
-        j++;
+        j++; // Incremento de j
+	   //Escanea la linea y toma cada dato y los separa por :
         sscanf(line2,"%[^:]:%[^:]:%[^:]:%[^\n]", nombreSuc, direccionSuc, barrioSuc, agenteSuc); //%[^:]:
     	fflush(stdin);
 		
     	cout<<" | "<<nombreSuc<<" | "<<direccionSuc<<" | "<<barrioSuc<<" | "<<agenteSuc<<" | "<<endl;
-    	
+    	        // Inserta los datos de la sucursal
 		Sucursal.insertarSucursal(nombreSuc, direccionSuc, barrioSuc, agenteSuc);
-    	
+    		// lee la siguiente linea
 		fgets(line2,MAX2,sucursales); 
 	}
+	// Cout para saber cuantas lineas posee
 	cout<<"Line: "<<j<<endl;
 	
 	//	cout<<"--------------------------------------------------------------Cargar Hijos-------------------------------------------------------"<<endl;
     
-	char line3[MAX3];
-	char idPadre[2];
-	char nombreHijo[25];
-    char fechaNacHijo[10];
-    char edadHijo[2];
+	char line3[MAX3];     //Tamaño maximo del archivo Hijos.txt
+	char idPadre[2];   // id del padre 
+	char nombreHijo[25]; // Nombre del hijo
+    char fechaNacHijo[10];   // Fecha de nacimiento del hijo
+    char edadHijo[2];     // Edad del hijo
     
-	
+	//Abre el archivo Hijos.txt
 	FILE *hijosArch=fopen("Hijos.txt","rt");
-    
+    //Comprueba si el archivo existe
     if(!hijosArch)      
         cout<<"No existe"<<endl;   
-
+     //Auxiliar que nos ayuda a saber cuantas lineas tiene
     int k=0;
+	//obtiene los datos de la primera linea
     fgets(line3,MAX3,hijosArch);
-    
+    	// nos ayuda a diferenciar los datos del archvio
     	cout<<"| idPadre | Nombre Hijo | Fecha Naci Hijo | Edad Hijo | "<<endl;
-    
+    // Mientras tenga otra linea con datos
     while(!feof(hijosArch)) {
-        k++;
+        k++; // aumenta k
+	    //Lee la linea en la que esta y separa los datos por :
         sscanf(line3,"%[^:]:%[^:]:%[^:]:%[^\n]", idPadre, nombreHijo, fechaNacHijo, edadHijo); //%[^:]:
     	fflush(stdin);
     	cout<<" | "<<idPadre<<" | "<<nombreHijo<<" | "<<fechaNacHijo<<" | "<<edadHijo<<" | "<<endl;
     	
+	    // Inserta los hijos en la persona que corresponda
     	Persona.insertarHijo(idPadre, nombreHijo, fechaNacHijo, edadHijo);
-    	
+    		//Lee la siguiente linea
 		fgets(line3,MAX3,hijosArch); 
 	}
+	//saber cuantas lineas tiene el archivo
 	cout<<"Line: "<<k<<endl;
 	
-	//	cout<<"--------------------------------------------------------------Cargar Hijos-------------------------------------------------------"<<endl;
+	//	cout<<"--------------------------------------------------------------Cargar Paises y Ciudades-------------------------------------------------------"<<endl;
     
-	char line4[MAX4];
-	char ciudad[15];
-	char pais[15];
+	char line4[MAX4];   //Maximo para el archivo de Paises.txt
+	char ciudad[15];   // Ciudad 
+	char pais[15];	   // Pais 
 	
+	//Crea una Ciudad de tipo de datos string
 	Ciudad<string> Ciudad;
 	
+	//Lee el archivo paises.txt
 	FILE *paises=fopen("Paises.txt","rt");
-    
+    //Comprueba si el archivo existe
     if(!paises)      
         cout<<"No existe"<<endl;   
-
+     // auxiliar para saber cuantas lineas estan en el archivo
     int m=0;
+	//lee la primera linea del archivo
     fgets(line4,MAX4,paises);
-    
+    	// ayuda para saber cuales son los datos
     	cout<<"| Ciudad | Pais |"<<endl;
-    
+    //Mientras tenga lineas para leer
     while(!feof(paises)) {
-        m++;
+        m++; //aumenta m
+	 //escanea la linea y separa los datos por : 
         sscanf(line4,"%[^:]:%[^\n]", ciudad, pais); //%[^:]:
     	fflush(stdin);
-    
-    	cout<<" | "<<ciudad<<" | "<<pais<<" | "<<endl;
     	
+    	cout<<" | "<<ciudad<<" | "<<pais<<" | "<<endl;
+    	//Inserta las ciudades y el pais en el cual estan ubicadas
     	Ciudad.insertarCiudad(ciudad, pais);
-		    	
+		    //lee la siguiente linea	
 		fgets(line4,MAX4,paises); 
 	}
+	//cout para saber cuantas lineas posee el archivo
 	cout<<"Line: "<<m<<endl;
 	
 	//	cout<<"--------------------------------------------------------------Realizar Operaciones -------------------------------------------------------"<<endl;
-
+	// Menu principal en donde se realizaran todas las operaciones basicas 
 	switch(opcionPrincipal){
+			// El primer caso es agregar un nuevo empleado
 		case 1:{
 			
 		//	cout<<"--------------------------------------------------------------AGREGAR EMPLEADO -------------------------------------------------------"<<endl;	
-			lista<string> Fem;
-			lista<string> Mas;
+			lista<string> Fem;   // Lista con todos los que tienen genero femenino
+			lista<string> Mas;   // Lista con todos los que tienen genero masculino
 			
-			char ingid[3];
-		    char ingnombre[10];
-		    char ingapellido[20];
-		    int ingtipoid; 
-		    char settipoid[2]; 
-		    char ingdocumento[15];
-		    int inggenero;
-		    char aggenero[2];
-		    char ingfijo[10];
-		    char ingcelular[10];
-		    char ingemail[30];
-		    char ingfechaNac[10];
-		    char ingedad[2];
-		    int intciudad;
-		    char ingciudadNac[15];
-		    char ingpaisNac[15];
-		    int intresid;
-		    char ingciudadRes[15];
-		    char ingdireccion[30];
-		    char ingbarrio[15];
-		    char ingactividad[25];
-		    char aghijos;
-		    char inghijos[2];
-		    char ingnumhijos[2];
-		    int ingsucursal;
-		    int edadPersona;
-		    char agsucursal[15];
+			char ingid[3];    // Id del nuevo empleado
+		    char ingnombre[10];   // Nombre del nuevo empleado
+		    char ingapellido[20];  // Apellido del nuevo empleado
+		    int ingtipoid;      // Opcion para elegir el tipo de id
+		    char settipoid[2];   // Tipo de id del nuevo empleado
+		    char ingdocumento[15];  // Numero de identificacion del nuevo empleado
+		    int inggenero;   // Opcion para elegir el genero de la nueva persona
+		    char aggenero[2]; // Genero de la Persona
+		    char ingfijo[10];  // Numero fijo del nuevo empleado
+		    char ingcelular[10]; // Numero del celular del nuevo empleado
+		    char ingemail[30];  // Correo electronico del nuevo empleado
+		    char ingfechaNac[10];  // Fecha de nacimiento del nuevo empleado
+		    char ingedad[2]; // Edad del nuevo empleado
+		    int intciudad;  // Opcion para la ciudad del nuevo empleado
+		    char ingciudadNac[15];  // Ciudad de nacimiento del nuevo empleado
+		    char ingpaisNac[15];  // Pais de nacimiento del nuevo empleado
+		    int intresid;       // Opcion para saber la residencia del nuevo empleado
+		    char ingciudadRes[15];  // Ciudad de residencia del nuevo empleado
+		    char ingdireccion[30];  // Direccion del nuevo empleado
+		    char ingbarrio[15];  // Barrio del nuevo empleado
+		    char ingactividad[25]; // Actividad a la que se dedicara el nuevo empleado 
+		    char aghijos; 
+		    char inghijos[2];    // Tiene o no hijos S o N
+		    char ingnumhijos[2];  // Numero de hijos del nuevo empleado
+		    int ingsucursal;    // Opcion de sucursal del nuevo empleado
+		    int edadPersona;   // Edad del nuevo empleado
+		    char agsucursal[15];  // 
 		    
 		    char NombreHijo[25];
 		    char FechaNaciHijo[10];
