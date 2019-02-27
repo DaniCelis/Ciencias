@@ -5,128 +5,135 @@
 #include <string>
 #include <cstring>
 using namespace std;
-
+//Plantilla para que se pueda usar con cualquier tipo de dato
 template <class T>
+//Estructura nodo que tiene informacion y apunta a un nodo siguiente
 struct nodo{
 	T info;
 	nodo<T> *sig;
 };
+//Estructura nodo hijos que servira para guardar los datos de los hijos 
 template<class T>
 struct nodoHijos{
-	string idPadre;
-	string nomb;
-	string fechaNaci;
-	string edad;
-	nodoHijos<T> *sig,*ant;
+	string idPadre;  //Id del padre
+	string nomb;	//Nombre del hijo
+	string fechaNaci; //Fecha de nacimiento del hijo
+	string edad;   // Edad del hijo
+	nodoHijos<T> *sig,*ant;  //Apuntadores al siguiente hermano y al anterior
 };
-
+//Estructura nodo Sucursal que servira para guardar los datos de las sucursales 
 template<class T>
 struct nodoSucursal{
-	string nombreSucu;
-	string direccionSucu;
-	string barrioSucu;
-	string agenteSucu;
-	nodoSucursal<T> *sig;	
+	string nombreSucu;    //Nombre de la sucursal
+	string direccionSucu;  //Direccion de la sucursal
+	string barrioSucu; // Barrio de la sucursal
+	string agenteSucu;  //Gerente de la sucursal
+	nodoSucursal<T> *sig;	// Apuntador a la siguiente sucursal
 };
 
+//Estructura nodo Ciudad que servira para guardar los datos de los paises y ciudadaes
 template<class T>
 struct nodoCiudad{
-	string ciudad;
-	string pais;
-	nodoCiudad<T> *sig;	
+	string ciudad;    //Nombre de la ciudad
+	string pais;    // Pais al que pertenece
+	nodoCiudad<T> *sig;	 // Apuntador a la siguiente ciudad y pais
 };
 
-
+//Estructura nodo Persona que servira para guardar los datos del empleado
 template <class T>
 struct nodoPersona{
-	string id;
-	string nombre;
-	string apellido;
-	string settipoid;
-	string numid;
-	string genero;
-	string telf;
-	string telc;
-	string mail;
-	string fecnac;
-	string edad;
-	string cidnac;
-	string paisnac;
-	string cidres;
-	string dire;
-	string barrio;
-	string actividad;
-	string hijos;
-	string numhijos;
-	string sucursal;
-	nodoHijos<T> nhijos;
-	nodoSucursal<T> sucu;
-	nodoPersona<T> *sig;
+	string id;    //Id de la empresa para el empleado
+	string nombre;  // Nombre del empleado
+	string apellido; // Apellido del empleado
+	string settipoid; // Tipo de identificacion ( Cedula ciudadania,Cedula extranjera o tarjeta de identidad)
+	string numid;    // numero de identificacion del empleado
+	string genero;  //Genero del empleado F o M
+	string telf;  // Telefono fijo del empleado
+	string telc;  //Telefono celular del empleado
+	string mail;  // Correo electronico del empleado
+	string fecnac;    //Fecha de nacimiento del empleado
+	string edad;  // Edad del empleado
+	string cidnac;  // Ciudad de nacimiento del empleado
+	string paisnac;  // Pais de nacimiento del empleado
+	string cidres;  // Ciudad de residencia del empleado
+	string dire;   // Direccion del empleado
+	string barrio;  // Barrio del empleado
+	string actividad;  // Actividad del empleado
+	string hijos;   // Respuesta S o N de si tiene hijos
+	string numhijos;  // Numero de hijos que tiene el empleado
+	string sucursal;   // Nombre de la sucursal
+	nodoHijos<T> nhijos;  // Conexion con el la estructura nodos hijos para recuperar facilmente los hijos
+	nodoSucursal<T> sucu;  // Conexion con la estructura nodo sucursal para recuperar facilmente la sucursal
+	nodoPersona<T> *sig;  // Apuntador a la siguiente persona ingresada
 };
 
+// Clase hijos que usa la estructura nodo Hijos 
 template<class T>
 class Hijos{
-	nodoHijos<T> *cab;
+	nodoHijos<T> *cab;    //apuntador que servira como el primer nodo
 	public:
-		Hijos(){
-			cab=new nodoHijos<T>;
-			cab->idPadre="";
-			cab->nomb="";
-			cab->fechaNaci="";
-			cab->edad="";
-			cab->sig=0;
-			cab->ant=0;
+		Hijos(){ // Constructor de la clase Hijos
+			cab=new nodoHijos<T>;   // crea un nodo Hijos y ese es donde apunta cabeza
+			cab->idPadre="";  // el id del padre es null
+			cab->nomb="";     // El nombre del hijo es null
+			cab->fechaNaci="";   //La fecha de nacimiento del hijo es null
+			cab->edad="";   // La edad del hijo es null
+			cab->sig=0;   // No tiene siguiente hijo
+			cab->ant=0; // No tiene anterior hijo
 		}
 		
-	void insertarHijo(T dato, string fech, int edad);
-	T retornarHijo(int pos);
+	void insertarHijo(T dato, string fech, int edad);   //Metodo para insertar hijos 
+	T retornarHijo(int pos);   //Metodo para retornar el nombre de un hijo en alguna posicion
 };
 
+//Clase sucursal que usa la estructura nodo Sucursal
 template<class T>
 class Sucursal{
-	nodoSucursal<T> *cab;
+	nodoSucursal<T> *cab; //apuntador que servira como el primer nodo
 	public:
-		Sucursal(){
-			cab=new nodoSucursal<T>;
-			cab->nombreSucu="";
-			cab->direccionSucu="";
-			cab->barrioSucu="";
-			cab->agenteSucu="";
-			cab->sig=NULL;
+		Sucursal(){   // Constructor de la clase Sucursal
+			cab=new nodoSucursal<T>; // Crea un nodo sucursal y cab apuntara a ese nodo
+			cab->nombreSucu="";   //El nombre de la sucursal es null
+			cab->direccionSucu="";  // La direccion de la sucursal es null
+			cab->barrioSucu=""; // El barrio de la sucursal es null
+			cab->agenteSucu="";   // El gerente de la sucursal es null
+			cab->sig=NULL;  // la siguiente sucursal es null
 			
 		}
 		
-	void insertarSucursal(char nombre[20], char direccion[30], char barrio[15], char gerente[20]);
-	T retornarSucursal(int pos);
-	void sucu();
+	void insertarSucursal(char nombre[20], char direccion[30], char barrio[15], char gerente[20]);  //Metodo para insertar una sucursal
+	T retornarSucursal(int pos); //Metodo para retornar el nombre de una sucursal en una posicion
+	void sucu(); // Retorna todas las sucursales insertadas enumeradas
 };
 
+//Clase Ciudad que usa la estructura nodo Ciudad
 template<class T>
 class Ciudad{
-	nodoCiudad<T> *cab;
+	nodoCiudad<T> *cab; //apuntador que servira como el primer nodo
 	public:
-		Ciudad(){
-			cab=new nodoCiudad<T>;
-			cab->ciudad="";
-			cab->pais="";
-			cab->sig=NULL;	
+		Ciudad(){ // Constructor de la clase ciudad
+			cab=new nodoCiudad<T>; //Crea un nodo ciudad y cab apuntara a ese nodo
+			cab->ciudad="";   // Ciudad es null
+			cab->pais="";   // Pais es null
+			cab->sig=NULL;	// El siguiente nodoCiudad es null
 		}
 		
-	void insertarCiudad(char ciudad[15], char pais[15]);
-	T retornarCiudad(int pos);
-	T retornarPais(int pos);
-	void ciud();
+	void insertarCiudad(char ciudad[15], char pais[15]);   //Metodo para insertar una ciudad y un pais
+	T retornarCiudad(int pos);    // Metodo para retornar una ciudad en una posicion
+	T retornarPais(int pos);     // Metodo para retornar un pais en una posicion
+	void ciud();   //Metodo que retorna todos las ciudades y paises enumerados
 };
 
+//Clase Persona que usa la estructura nodoPersona
 template<class T>
 class persona{
 	
-	nodoPersona<T> *cabP;
-	nodoHijos<T> *cabH;
-	nodoSucursal<T> *cabS;
+	nodoPersona<T> *cabP;  //Apuntador que servira como el primer nodoPersona
+	nodoHijos<T> *cabH;    //Apuntador que servira como el primer nodoHijos
+	nodoSucursal<T> *cabS;   //Apuntador que servira como el primer nodo Sucursal
 	public:
-		persona(){
-			cabP = new nodoPersona<T>;
+		persona(){   // Constructor de la clase Persona
+			cabP = new nodoPersona<T>;  // Todos los atributos de persona estaran en null
 			cabP->id="";
 			cabP->nombre="";
 			cabP->apellido="";
@@ -148,7 +155,7 @@ class persona{
 			cabP->numhijos="";
 			cabP->sucursal="";
 		//	cabP->hijos=NULL;
-			cabH=new nodoHijos<T>;
+			cabH=new nodoHijos<T>;  //Todos los atributos de hijos estaran null
 			cabH->idPadre="";
 			cabH->nomb="";
 			cabH->fechaNaci="";
@@ -156,7 +163,7 @@ class persona{
 			cabH->sig=0;
 			cabH->ant=0;
 		//	cabP->sucu=NULL;
-			cabS=new nodoSucursal<T>;
+			cabS=new nodoSucursal<T>;   // Todos los atributos de sucursal estaran null
 			cabS->nombreSucu="";
 			cabS->direccionSucu="";
 			cabS->barrioSucu="";
@@ -166,31 +173,32 @@ class persona{
 			cabP->sig=NULL;
 			
 		}
-		
+	//Metodo para insertar una persona
 	void insertarPersona(char ingid[3], char ingnombre[10], char ingapellido[20], char settipoid[2], char ingdocumento[15], char genero[2], char ingfijo[10], char ingcelular[10], char ingemail[30],
 			 char ingfechaNac[10], char ingedad[2], char ingciudadNac[15], char ingpaisNac[15], char ingciudadRes[15], char ingdireccion[30], char ingbarrio[15], char ingactividad[25], char hijos[2], char ingnumhijos[2], char sucursal[15]);
-	void insertarHijo(char idPadre[2], char nombreHijo[25], char fechanaci[10], char edad[2]);
-	T retornarHijo(int pos);
-	void retornarPersona(int pos);
-	T retornarNo(int pos);
-	T retornarAp(int pos);
-	T retornarFi(int pos);
-	T retornarCe(int pos);
-	T retornarEm(int pos);
-	T retornarDi(int pos);
-	T retornarBa(int pos);
-	T retornarHi(int pos);
-	T retornarNumHij(int pos);
-	T retornarTi(int pos);
-	T retornarNumId(int pos);
-	T retornarGe(int pos);
-	T retornarFn(int pos);
-	T retornarEd(int pos);
-	T retornarCn(int pos);
-	T retornarPn(int pos);
-	T retornarCr(int pos);
-	T retornarAc(int pos);
-	T retornarSu(int pos);
+	
+	void insertarHijo(char idPadre[2], char nombreHijo[25], char fechanaci[10], char edad[2]); //Metodo para insertar los hijos a esa persona
+	T retornarHijo(int pos);  //Metodo para retornar el nombre del hijo en una posicion
+	void retornarPersona(int pos);  //Metodo para retornar todos los datos de una persona en una posicion
+	T retornarNo(int pos);    //Metodo para retornar el nombre de la persona en una posicion
+	T retornarAp(int pos); 		 //Metodo para retornar el apellido de la persona en una posicion
+	T retornarFi(int pos); 		 //Metodo para retornar el telefono fijo de la persona en una posicion
+	T retornarCe(int pos);		 //Metodo para retornar el celular de la persona en una posicion
+	T retornarEm(int pos);		 //Metodo para retornar el correo de la persona en una posicion
+	T retornarDi(int pos); 		 //Metodo para retornar la direccion de la persona en una posicion
+	T retornarBa(int pos);		 //Metodo para retornar el barrio de la persona en una posicion
+	T retornarHi(int pos);  	//Metodo para retornar el si tiene hijos o no de la persona en una posicion
+	T retornarNumHij(int pos);     //Metodo para retornar el numero de hijos de la persona en una posicion
+	T retornarTi(int pos); 		 //Metodo para retornar el tipo de id de la persona en una posicion
+	T retornarNumId(int pos); 	 //Metodo para retornar el numero de id de la persona en una posicion
+	T retornarGe(int pos);		 //Metodo para retornar el genero de la persona en una posicion
+	T retornarFn(int pos);		 //Metodo para retornar la fecha de nacimiento de la persona en una posicion
+	T retornarEd(int pos);		 //Metodo para retornar la edad  de la persona en una posicion
+	T retornarCn(int pos);		 //Metodo para retornar la ciudad de nacimiento de la persona en una posicion
+	T retornarPn(int pos);		 //Metodo para retornar el pais de nacimiento de la persona en una posicion
+	T retornarCr(int pos);		 //Metodo para retornar la ciudad de residencia de la persona en una posicion
+	T retornarAc(int pos);   	  //Metodo para retornar la actividad de la persona en una posicion
+	T retornarSu(int pos);		 //Metodo para retornar el nombre de la sucursal de la persona en una posicion
 	
 	void rePe();
 	//void sucu();
