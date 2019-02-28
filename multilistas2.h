@@ -128,7 +128,7 @@ class Ciudad{
 template<class T>
 class persona{
 	
-	nodoPersona<T> *cabP;  //Apuntador que servira como el primer nodoPersona
+	nodoPersona<T> *cabP;   
 	nodoHijos<T> *cabH;    //Apuntador que servira como el primer nodoHijos
 	nodoSucursal<T> *cabS;   //Apuntador que servira como el primer nodo Sucursal
 	public:
@@ -200,37 +200,42 @@ class persona{
 	T retornarAc(int pos);   	  //Metodo para retornar la actividad de la persona en una posicion
 	T retornarSu(int pos);		 //Metodo para retornar el nombre de la sucursal de la persona en una posicion
 	
-	void rePe();
+	void rePe();  //Metodo que retorna el nombre de las personas y los enumera
 	//void sucu();
 	
 	//metodos de consulta
 	
-	void buscarSucursal(string texto);
+	void buscarSucursal(string texto);   // Metodo para buscar las sucursales
 	
 	
 };
+//Clase lista que implementa la estructura nodo
 template <class T>
 class lista{
 	
-	nodo<T> *cab;
+	nodo<T> *cab; //Apuntador que servira como el primer nodo
 	
 	public:
-		lista(){
-			cab = new nodo<T>;
-			cab->info ="";
+		lista(){ // Constructor de la clase Lista
+			cab = new nodo<T>;  //Crea un nodo y  cab apunta a el
+			cab->info ="";      //Info y siguiente seran nulos
 			cab->sig=NULL;
 		}
 		
-	void insertarLista(T dato);
-	T retornarLista(int pos);
+	void insertarLista(T dato); // Inserta en la lista un dato
+	T retornarLista(int pos);   // Retorna el dato en una posicion
 };
 //metodos lista
+
+//Metodo Persona
+
+//Metodo para insertar una persona
 template <class T>
 void persona<T>::insertarPersona(char ingid[3], char ingnombre[10], char ingapellido[20], char settipoid[2], char ingdocumento[15], char genero[2], char ingfijo[10], char ingcelular[10], char ingemail[30],
 			 char ingfechaNac[10], char ingedad[2], char ingciudadNac[15], char ingpaisNac[15], char ingciudadRes[15], char ingdireccion[30], char ingbarrio[15], char ingactividad[25], char hijos[2], char ingnumhijos[2], char sucursal[15]){
 	
 	
-	string idAux(ingid);
+	string idAux(ingid);                  // Se pasa cada atributo de char a string para facilitar la insercion de los datos
 	string nombreAux(ingnombre);
 	string apellidoAux(ingapellido);
 	string settAux(settipoid);
@@ -252,9 +257,9 @@ void persona<T>::insertarPersona(char ingid[3], char ingnombre[10], char ingapel
 	string sucursalAux(sucursal);	
 	
 	
-	nodoPersona<T> *aux, *aux1=cabP;
-	aux = new nodoPersona<T>;
-	aux->id = idAux;
+	nodoPersona<T> *aux, *aux1=cabP;   // Se declara un nodoPersona aux y aux1 empezara en la cabeza
+	aux = new nodoPersona<T>;   // Se crea un nuevo nodo
+	aux->id = idAux;            // Los parametros se pasan a cada atributo correspondiente de persona
 	aux->nombre = nombreAux;
 	aux->apellido= apellidoAux;
 	aux->settipoid = settAux;
@@ -275,35 +280,38 @@ void persona<T>::insertarPersona(char ingid[3], char ingnombre[10], char ingapel
 	aux->numhijos = numHijosAux;
 	aux->sucursal = sucursalAux;
 	
-	aux->sig = NULL;
+	aux->sig = NULL;   // La siguiente persona es null
 	
-	while(aux1->sig != NULL){
+	while(aux1->sig != NULL){  //Empieza en la cabeza y si hasta que encuentre que el siguiente es null
 		aux1 = aux1->sig;
 	}
 	
-	aux1->sig = aux;	
+	aux1->sig = aux;	//Cuando la encuentra en ese null inserta el nuevo nodo
 	
 //	cout<<"Persona Agregada a Lista"<<endl;
 }
+
+//Metodo para retornar las personas enumeradas
 template<class T>
 void persona<T>::rePe(){
-	nodoPersona<T> *aux,*aux1=cabP;
+	nodoPersona<T> *aux,*aux1=cabP;     // Se declara un nodoPersona aux y aux1 empezara en la cabeza
 	aux=new nodoPersona<T>;
-	while(aux1->sig!=NULL){
-		aux1=aux1->sig;
-		cout<<aux1->id<<". "<<aux1->nombre<<endl;
+	while(aux1->sig!=NULL){   //mientras encuentre otra persona 
+		aux1=aux1->sig;    //Pasara a la siguiente persona
+		cout<<aux1->id<<". "<<aux1->nombre<<endl; // Imprime el id y el nombre de la persona
 	}
 }
 
+//Metodo para imprimir el nombre de la persona en una posicion
 template<class T>
 void persona<T>::retornarPersona(int pos){
-    int i;
-	nodoPersona<T> *aux,*aux1=cabP;
+    	int i; // Auxiliar que ayudara con las iteracions del for
+	nodoPersona<T> *aux,*aux1=cabP;  // Se declara un nodoPersona aux y aux1 empezara en la cabeza
 	aux=new nodoPersona<T>;
-	for(i=1;i<=pos&& aux1->sig!=NULL;i++){
+	for(i=1;i<=pos&& aux1->sig!=NULL;i++){  // Se hara esta iteracion mientras i sea menor a la posicion que se paso por el parametro y la siguiente persona no sea null
 		aux1=aux1->sig;
 	}
-	cout<< aux1->nombre;
+	cout<< aux1->nombre;   // Devuelve el nombre de la persona 
 }
 
 //template<class T>
@@ -317,26 +325,28 @@ void persona<T>::retornarPersona(int pos){
 //	cout<< aux1->nombre;
 //}
 
+//Metodo para retornar el noombre en string
 template<class T>
 T persona<T>::retornarNo(int pos){
-    int i;
-	nodoPersona<T> *aux,*aux1=cabP;
+    int i;		// Auxiliar que ayudara con las iteracions del for
+	nodoPersona<T> *aux,*aux1=cabP;		 // Se declara un nodoPersona aux y aux1 empezara en la cabeza
 	aux=new nodoPersona<T>;
-	for(i=1;i<=pos&& aux1->sig!=NULL;i++){
+	for(i=1;i<=pos&& aux1->sig!=NULL;i++){ // Se hara esta iteracion mientras i sea menor a la posicion que se paso por el parametro y la siguiente persona no sea null
 		aux1=aux1->sig;
 	}
-	return aux1->nombre;
+	return aux1->nombre;  // Retorna el nombre de la persona
 }
 
+//Metodo para retornar el apellido en string
 template<class T>
 T persona<T>::retornarAp(int pos){
     int i;
-	nodoPersona<T> *aux,*aux1=cabP;
+	nodoPersona<T> *aux,*aux1=cabP; //Se declara un nodoPersona aux y aux1 empezara en la cabeza
 	aux=new nodoPersona<T>;
-	for(i=1;i<=pos&& aux1->sig!=NULL;i++){
+	for(i=1;i<=pos&& aux1->sig!=NULL;i++){ // Se hara esta iteracion mientras i sea menor a la posicion que se paso por el parametro y la siguiente persona no sea null
 		aux1=aux1->sig;
 	}
-	return aux1->apellido;
+	return aux1->apellido; //Retorna el apellido 
 }
 
 
