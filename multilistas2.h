@@ -552,9 +552,10 @@ T persona<T>::retornarSu(int pos){
 }
 
 //metodos de lista
+//Metodo para insertar en la lista (No lo acabo de comentariar porque puede que lo editemos)
 template<class T>
 void lista<T>::insertarLista(T dato){
-	nodo<T> *aux,*aux1=cab;
+	nodo<T> *aux,*aux1=cab;   
 	aux= new nodo<T>;
 	aux->info=dato;
 	aux->sig=NULL;
@@ -563,6 +564,7 @@ void lista<T>::insertarLista(T dato){
 	}
 	aux1->sig=aux;
 }
+//Metodo para retornar un dato en una posicion (Lo mismo que el anterior)
 template<class T>
 T  lista<T>::retornarLista(int pos){
     int i;
@@ -574,28 +576,29 @@ T  lista<T>::retornarLista(int pos){
 	return aux1->info;
 }
 //metodos nodoHijos
+//Metodo para insertar el hijo 
 template<class T>
 void persona<T>::insertarHijo(char idPadre[2], char nombre[25], char fech[10], char edad[2]){
 
-	string idAux(idPadre);
+	string idAux(idPadre);   //Pasamos los parametros de char a string
 	string nomAux(nombre);
 	string fechaAux(fech);
 	string edadAux(edad);
 	
-	nodoHijos<T> *aux,*auxT,*aux1=cabH;
-	aux=new nodoHijos<T>;
-	aux->idPadre = idAux;
-	aux->nomb = nomAux;
-	aux->fechaNaci = fechaAux;
-	aux->edad = edadAux;
+	nodoHijos<T> *aux,*auxT,*aux1=cabH;  //Declaramo dos nodoHijos aux y aux1 que empezara en la cabeza de hijos
+	aux=new nodoHijos<T>;  //Creamos un nodoHijo
+	aux->idPadre = idAux;   //  Le pasamos el id del padre a ese nuevo nodo
+	aux->nomb = nomAux; 	//  Le pasamos el nombre a ese nuevo nodo
+	aux->fechaNaci = fechaAux; //  Le pasamos la fecha de nacimiento a ese nuevo nodo
+	aux->edad = edadAux; //  Le pasamos la edad a ese nuevo nodo
 	aux->sig=0;
-	while(aux1->sig != 0 && aux1->edad < aux->edad){
+	while(aux1->sig != 0 && aux1->edad < aux->edad){  //Este while nos servira hasta que no encuentre a un siguiente o la edad sea mayor que el que esta comparando
 		aux1=aux1->sig;
 	}
-	auxT=aux1;
-	if(aux1->edad > aux->edad){
-			auxT=aux1;
-            aux1=aux;
+	auxT=aux1; //Creamos un auxiliar
+	if(aux1->edad > aux->edad){ // Cambia la forma para que este organizado ascendentemente
+			auxT=aux1;  
+           		 aux1=aux;
 			aux=auxT;
 			aux1->ant=aux->ant;
 			aux->ant->sig=aux1;
@@ -605,48 +608,51 @@ void persona<T>::insertarHijo(char idPadre[2], char nombre[25], char fech[10], c
 }
 
 template<class T>
+//Metodo para retornar el hijo en una posicion
 T persona<T>::retornarHijo(int pos){
     int i;
-	nodoHijos<T> *aux,*aux1=cabH;
+	nodoHijos<T> *aux,*aux1=cabH; //Declara dos nodoHijos aux y aux1 que empezara en la cabeza de hijos
 	aux=new nodoHijos<T>;
-	for(i=1;i<=pos&& aux1->sig!=NULL;i++){
+	for(i=1;i<=pos&& aux1->sig!=NULL;i++){  //Ciclo para encontrar la posicion que se pide
 		aux1=aux1->sig;
 	}
-	return aux1->nomb;
+	return aux1->nomb; //Retorna el nombre del hijo
 }
 //Metodos sucursal
 template<class T>
+//Metodo para insertar una sucursal
 void Sucursal<T>::insertarSucursal(char nombre[20], char direccion[30], char barrio[15], char gerente[20]){
 	
-	string nombreAux(nombre);
+	string nombreAux(nombre);		//Pasamos los parametros de char a string
 	string direccionAux(direccion);
 	string barrioAux(barrio);
 	string gerenteAux(gerente);
 	
-	nodoSucursal<T> *aux,*aux1=cab;
-	aux= new nodoSucursal<T>;
-	aux->nombreSucu = nombreAux;
+	nodoSucursal<T> *aux,*aux1=cab;  //Declaramos dos nodoSucursal aux y aux1 que empezara en la cabeza de las sucursales
+	aux= new nodoSucursal<T>;		//Creamos un nuevo nodo el cual sera aux
+	aux->nombreSucu = nombreAux;  		//Le pasamos los parametros al nuevo nodo
 	aux->direccionSucu = direccionAux;
 	aux->barrioSucu = barrioAux;
 	aux->agenteSucu = gerenteAux;
 	aux->sig=NULL;
-	while(aux1->sig !=NULL){
+	while(aux1->sig !=NULL){  //Ciclo para encontrar la ultima sucursal
 		aux1=aux1->sig;
 	}
-	aux1->sig=aux;
+	aux1->sig=aux;	//Se agrega en la ultima posicion
 }
 
 template<class T>
+//Metodo para retornar  la sucursal en una posicion
 T Sucursal<T>::retornarSucursal(int pos){
 	
     int i;
-	nodoSucursal<T> *aux,*aux1=cab;
+	nodoSucursal<T> *aux,*aux1=cab;  //Declaramos dos nodoSucursal aux y aux1 que empezara en la cabeza de las sucursales
 	aux=new nodoSucursal<T>;
-	for(i=1;i<=pos&& aux1->sig!=NULL;i++){
+	for(i=1;i<=pos&& aux1->sig!=NULL;i++){ //Ciclo para encontrar la posicion que se paso por parametro
 		aux1=aux1->sig;
 	}
 	
-	return aux1->nombreSucu;
+	return aux1->nombreSucu;	//Retorna el nombre de la sucursal
 }
 
 
