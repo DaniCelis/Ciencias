@@ -349,184 +349,208 @@ T persona<T>::retornarAp(int pos){
 	return aux1->apellido; //Retorna el apellido 
 }
 
-
+//Metodo para retornar telefono fijo
 template<class T>
 T persona<T>::retornarFi(int pos){
     int i;
-	nodoPersona<T> *aux,*aux1=cabP;
+	nodoPersona<T> *aux,*aux1=cabP; //Se declara un nodoPersona aux y aux1 empezara en la cabeza
 	aux=new nodoPersona<T>;
-	for(i=1;i<=pos&& aux1->sig!=NULL;i++){
+	for(i=1;i<=pos&& aux1->sig!=NULL;i++){  // Se hara esta iteracion mientras i sea menor a la posicion que se paso por el parametro y la siguiente persona no sea null
 		aux1=aux1->sig;
 	}
-	return aux1->telf;
+	return aux1->telf;  //Retorna el Telefono
 }
+
+//Metodo para retornar Celular
 template<class T>
 T persona<T>::retornarCe(int pos){
     int i;
-	nodoPersona<T> *aux,*aux1=cabP;
+	nodoPersona<T> *aux,*aux1=cabP; //Se declara un nodoPersona aux y aux1 empezara en la cabeza
 	aux=new nodoPersona<T>;
-	for(i=1;i<=pos&& aux1->sig!=NULL;i++){
+	for(i=1;i<=pos&& aux1->sig!=NULL;i++){ // Se hara esta iteracion mientras i sea menor a la posicion que se paso por el parametro y la siguiente persona no sea null
 		aux1=aux1->sig;
 	}
-	return aux1->telc;
+	return aux1->telc;  //Retorna el celular
 }
+//Metodo para retornar el correo
 template<class T>
 T persona<T>::retornarEm(int pos){
     int i;
-	nodoPersona<T> *aux,*aux1=cabP;
+	nodoPersona<T> *aux,*aux1=cabP;  //Se declara un nodoPersona aux y aux1 el cual empezara en la cabeza
 	aux=new nodoPersona<T>;
-	for(i=1;i<=pos&& aux1->sig!=NULL;i++){
+	for(i=1;i<=pos&& aux1->sig!=NULL;i++){  // Se hara esta iteracion mientras i sea menor a la posicion que se paso por el parametro y la siguiente persona no sea null
 		aux1=aux1->sig;
 	}
-	return aux1->mail;
+	return aux1->mail;   //Retorna Correo
 }
 
 
-
+//Metodo para retornar la direccion
 template<class T>
 T persona<T>::retornarDi(int pos){
     int i;
-	nodoPersona<T> *aux,*aux1=cabP;
+	nodoPersona<T> *aux,*aux1=cabP; //Se declara un nodoPersona aux y aux1 el cual empezara en la cabeza
 	aux=new nodoPersona<T>;
-	for(i=1;i<=pos&& aux1->sig!=NULL;i++){
+	for(i=1;i<=pos&& aux1->sig!=NULL;i++){  // Se hara esta iteracion mientras i sea menor a la posicion que se paso por el parametro y la siguiente persona no sea null
 		aux1=aux1->sig;
 	}
-	return aux1->dire;
+	return aux1->dire;  // Retorna la direccion
 }
+
+//Metodo para retornar el barrio
 template<class T>
 T persona<T>::retornarBa(int pos){
     int i;
-	nodoPersona<T> *aux,*aux1=cabP;
+	nodoPersona<T> *aux,*aux1=cabP; //Se declara un nodoPersona aux y aux1 el cual empezara en la cabeza
 	aux=new nodoPersona<T>;
-	for(i=1;i<=pos&& aux1->sig!=NULL;i++){
+	for(i=1;i<=pos&& aux1->sig!=NULL;i++){  // Se hara esta iteracion mientras i sea menor a la posicion que se paso por el parametro y la siguiente persona no sea null
 		aux1=aux1->sig;
 	}
-	return aux1->barrio;
+	return aux1->barrio;  //Retorna el barrio
 }
+//Metodo para retornar Si tiene Hijos o no
 template<class T>
 T persona<T>::retornarHi(int pos){
     int i;
-	nodoPersona<T> *aux,*aux1=cabP;
+	nodoPersona<T> *aux,*aux1=cabP; // Se declara un nodoPersona aux y aux1 el cual empezara en la cabeza
 	aux=new nodoPersona<T>;
-	for(i=1;i<=pos&& aux1->sig!=NULL;i++){
+	for(i=1;i<=pos&& aux1->sig!=NULL;i++){ // Se hara esta iteracion mientras i sea menor a la posicion que se paso por el parametro y la siguiente persona no sea null
 		aux1=aux1->sig;
 	}
-	return aux1->hijos;
+	return aux1->hijos;  // Retorna S o N dependiendo si tiene hijos o no
 }
 
+//Metodo para retornar el numero de hijis
 template<class T>
 T persona<T>::retornarNumHij(int pos){
     int i;
-	nodoPersona<T> *aux,*aux1=cabP;
+	nodoPersona<T> *aux,*aux1=cabP; // Se declara un nodoPersona aux y aux1 el cual empezara en la cabeza
 	aux=new nodoPersona<T>;
-	for(i=1;i<=pos&& aux1->sig!=NULL;i++){
+	for(i=1;i<=pos&& aux1->sig!=NULL;i++){ // Se hara esta iteracion mientras i sea menor a la posicion que se paso por el parametro y la siguiente persona no sea null
 		aux1=aux1->sig;
 	}
-	return aux1->numhijos;
+	return aux1->numhijos;  //Retorna el numero de hijos
 }
 
+//Metodo para retornar el tipo de id
 template<class T>
 T persona<T>::retornarTi(int pos){
     int i;
-	nodoPersona<T> *aux,*aux1=cabP;
+	nodoPersona<T> *aux,*aux1=cabP; // Se declara un nodoPersona aux y aux1 el cual empezara en la cabeza
 	aux=new nodoPersona<T>;
-	for(i=1;i<=pos&& aux1->sig!=NULL;i++){
+	for(i=1;i<=pos&& aux1->sig!=NULL;i++){ // Se hara esta iteracion mientras i sea menor a la posicion que se paso por el parametro y la siguiente persona no sea null
 		aux1=aux1->sig;
 	}
-	return aux1->settipoid;
+	return aux1->settipoid;  //Retorna el tipo de id puede ser CC CE o TI
 }
 
+//Metodo para retornar el numero de id
 template<class T>
 T persona<T>::retornarNumId(int pos){
     int i;
-	nodoPersona<T> *aux,*aux1=cabP;
+	nodoPersona<T> *aux,*aux1=cabP; //Se declara un nodoPersona aux y aux1 el cual empezara en la cabeza
 	aux=new nodoPersona<T>;
-	for(i=1;i<=pos&& aux1->sig!=NULL;i++){
+	for(i=1;i<=pos&& aux1->sig!=NULL;i++){ // Se hara esta iteracion mientras i sea menor a la posicion que se paso por el parametro y la siguiente persona no sea null
 		aux1=aux1->sig;
 	}
-	return aux1->numid;
+	return aux1->numid;  //Retorna el numero de id
 }
+
+//Metodo para retornar el genero
 template<class T>
 T persona<T>::retornarGe(int pos){
     int i;
-	nodoPersona<T> *aux,*aux1=cabP;
+	nodoPersona<T> *aux,*aux1=cabP;  //Se declara un nodoPersona aux y aux1 el cual empezara en la cabeza
 	aux=new nodoPersona<T>;
-	for(i=1;i<=pos&& aux1->sig!=NULL;i++){
+	for(i=1;i<=pos&& aux1->sig!=NULL;i++){ // Se hara esta iteracion mientras i sea menor a la posicion que se paso por el parametro y la siguiente persona no sea null
 		aux1=aux1->sig;
 	}
-	return aux1->genero;
+	return aux1->genero; //Retorna el genero puede ser M o F
 }
+
+//Metodo para retornar la fecha de nacimiento
 template<class T>
 T persona<T>::retornarFn(int pos){
     int i;
-	nodoPersona<T> *aux,*aux1=cabP;
+	nodoPersona<T> *aux,*aux1=cabP; //Se declara un nodoPersona aux y aux1 el cual empezara en la cabeza
 	aux=new nodoPersona<T>;
-	for(i=1;i<=pos&& aux1->sig!=NULL;i++){
+	for(i=1;i<=pos&& aux1->sig!=NULL;i++){ // Se hara esta iteracion mientras i sea menor a la posicion que se paso por el parametro y la siguiente persona no sea null
 		aux1=aux1->sig;
 	}
-	return aux1->fecnac;
+	return aux1->fecnac; //Rertorna la fecha de nacimiento
 }
+//Metodo para retornar edad
 template<class T>
 T persona<T>::retornarEd(int pos){
     int i;
-	nodoPersona<T> *aux,*aux1=cabP;
+	nodoPersona<T> *aux,*aux1=cabP; //Se declara un nodoPersona aux y aux1 el cual empezara en la cabeza
 	aux=new nodoPersona<T>;
-	for(i=1;i<=pos&& aux1->sig!=NULL;i++){
+	for(i=1;i<=pos&& aux1->sig!=NULL;i++){ // Se hara esta iteracion mientras i sea menor a la posicion que se paso por el parametro y la siguiente persona no sea null
 		aux1=aux1->sig;
 	}
-	return aux1->edad;
+	return aux1->edad; //Retorna la edad
 }
 
+//Metodo para retornar la ciudad de nacimietno
 template<class T>
 T persona<T>::retornarCn(int pos){
     int i;
-	nodoPersona<T> *aux,*aux1=cabP;
+	nodoPersona<T> *aux,*aux1=cabP;  //Se declara un nodoPersona aux y aux1 el cual empezara en cabeza
 	aux=new nodoPersona<T>;
-	for(i=1;i<=pos&& aux1->sig!=NULL;i++){
+	for(i=1;i<=pos&& aux1->sig!=NULL;i++){ // Se hara esta iteracion mientras i sea menor a la posicion que se paso por el parametro y la siguiente persona no sea null
 		aux1=aux1->sig;
 	}
-	return aux1->cidnac;
+	return aux1->cidnac;  //Retorna ciudad de nacimiento
 }
+
+//Metodo para retonar pais de nacimiento
 template<class T>
 T persona<T>::retornarPn(int pos){
     int i;
-	nodoPersona<T> *aux,*aux1=cabP;
+	nodoPersona<T> *aux,*aux1=cabP;   //Se declara un nodoPersona aux y aux1 el cual empezara en cabeza
 	aux=new nodoPersona<T>;
-	for(i=1;i<=pos&& aux1->sig!=NULL;i++){
+	for(i=1;i<=pos&& aux1->sig!=NULL;i++){ // Se hara esta iteracion mientras i sea menor a la posicion que se paso por el parametro y la siguiente persona no sea null
 		aux1=aux1->sig;
 	}
-	return aux1->paisnac;
+	return aux1->paisnac;  //Retorna el pais de nacimiento
 }
+
+//Metodo para retornar la ciudad de residencia
 template<class T>
 T persona<T>::retornarCr(int pos){
     int i;
-	nodoPersona<T> *aux,*aux1=cabP;
+	nodoPersona<T> *aux,*aux1=cabP;  //Se declara un nodoPersona aux y aux1 el cual empezara en cabeza
 	aux=new nodoPersona<T>;
-	for(i=1;i<=pos&& aux1->sig!=NULL;i++){
+	for(i=1;i<=pos&& aux1->sig!=NULL;i++){ // Se hara esta iteracion mientras i sea menor a la posicion que se paso por el parametro y la siguiente persona no sea null
 		aux1=aux1->sig;
 	}
-	return aux1->cidres;
+	return aux1->cidres;  //Retorna la ciudad de residencia
 }
+
+//Metodo para retornar la actividad laboral
 template<class T>
 T persona<T>::retornarAc(int pos){
     int i;
-	nodoPersona<T> *aux,*aux1=cabP;
+	nodoPersona<T> *aux,*aux1=cabP;  //Se declara un nodoPersona aux y aux1 el cual empezara en cabeza
 	aux=new nodoPersona<T>;
-	for(i=1;i<=pos&& aux1->sig!=NULL;i++){
+	for(i=1;i<=pos&& aux1->sig!=NULL;i++){ // Se hara esta iteracion mientras i sea menor a la posicion que se paso por el parametro y la siguiente persona no sea null
 		aux1=aux1->sig;
 	}
-	return aux1->actividad;
+	return aux1->actividad; //Retorna la actividad
 }
+
+//Metodo para retornar el nombre de la sucursal
 template<class T>
 T persona<T>::retornarSu(int pos){
     int i;
-	nodoPersona<T> *aux,*aux1=cabP;
+	nodoPersona<T> *aux,*aux1=cabP; //Se declara un nodoPersona aux y aux1 el cual empezara en cabeza
 	aux=new nodoPersona<T>;
 	for(i=1;i<=pos&& aux1->sig!=NULL;i++){
 		aux1=aux1->sig;
 	}
-	return aux1->sucursal;
+	return aux1->sucursal;  //Retorna el nombre de la sucursal
 }
+
 //metodos de lista
 template<class T>
 void lista<T>::insertarLista(T dato){
