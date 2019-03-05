@@ -9,7 +9,8 @@ using namespace std;
 template <class T>
 //Estructura nodo que tiene informacion y apunta a un nodo siguiente
 struct nodo{
-	T info;
+	string sucu;
+	int id;
 	nodo<T> *sig;
 };
 //Estructura nodo hijos que servira para guardar los datos de los hijos 
@@ -210,6 +211,7 @@ class persona{
 	
 };
 //Clase lista que implementa la estructura nodo
+
 template <class T>
 class lista{
 	
@@ -217,15 +219,16 @@ class lista{
 	
 	public:
 		lista(){ // Constructor de la clase Lista
-			cab = new nodo<T>;  //Crea un nodo y  cab apunta a el
-			cab->info ="";      //Info y siguiente seran nulos
+			cab = new nodo<T>; //Crea un nodo y  cab apunta a el
+			cab->sucu="";	   //sucu sera nulo
+			cab->id=0;	   //id y siguiente seran nulos
 			cab->sig=NULL;
 		}
 		
-	void insertarLista(T dato); // Inserta en la lista un dato
-	T retornarLista(int pos);   // Retorna el dato en una posicion
+	void insertarLista(T dato, int id); // Inserta en la lista un dato
+	T retornarLista(int pos); // Retorna el dato en una posicion
 };
-//metodos lista
+
 
 //Metodo Persona
 
@@ -554,10 +557,11 @@ T persona<T>::retornarSu(int pos){
 //metodos de lista
 //Metodo para insertar en la lista (No lo acabo de comentariar porque puede que lo editemos)
 template<class T>
-void lista<T>::insertarLista(T dato){
+void lista<T>::insertarLista(T dato, int id){
 	nodo<T> *aux,*aux1=cab;   
 	aux= new nodo<T>;
-	aux->info=dato;
+	aux->sucu=dato;
+	aux->id=id;
 	aux->sig=NULL;
 	while(aux1->sig !=NULL){
 		aux1=aux1->sig;
@@ -573,7 +577,7 @@ T  lista<T>::retornarLista(int pos){
 	for(i=1;i<=pos&& aux1->sig!=NULL;i++){
 		aux1=aux1->sig;
 	}
-	return aux1->info;
+	return aux1->sucu;
 }
 //metodos nodoHijos
 //Metodo para insertar el hijo 
