@@ -35,7 +35,7 @@ void print(FILE *fp){
 		cout<<ch;
 	}
 }
-//void editar(string datos);
+void editar(string dato, int id);
 
 // Funcion con la cual se hara los operaciones,practicamente es el menu donde seleccionar las opciones
 void funcionPrincipal(int opcionPrincipal){
@@ -326,12 +326,10 @@ void funcionPrincipal(int opcionPrincipal){
 				switch(inggenero){
 					case 1:
 						//Si es femenino el genero se expresa como F y se agrega a la lista de Femenino
-						Fem.insertarLista("F");
 						aggenero[0] ='F';
 						break;
 					case 2:
 						// Si es Masculino el genero se expresa como M y se agrega a la lista de masculino
-						Mas.insertarLista("M");
 						aggenero[0] ='M';
 						break;
 					default:
@@ -592,6 +590,11 @@ void funcionPrincipal(int opcionPrincipal){
 			// El empleado pasaria a ser ingresado en el archivo Personas.txt	
 			personas<<ingid<<":"<<ingnombre<<":"<<ingapellido<<":"<<settipoid<<":"<<ingdocumento<<":"<<aggenero<<":"<<ingfijo<<":"<<ingcelular<<":"<<ingemail<<":"<<ingfechaNac<<":"<<ingedad<<":"
 				<<ingciudadNac<<":"<<ingpaisNac<<":"<<ingciudadRes<<":"<<ingdireccion<<":"<<ingbarrio<<":"<<ingactividad<<":"<<inghijos<<":"<<ingnumhijos<<":"<<agsucursal<<endl;		
+			if(aggenero[0]=='F'){
+				Fem.insertarLista(agsucursal,valorID);
+			}else{
+				Mas.insertarLista(agsucursal,valorID);
+			}
 			// Se cierra el archivo Personas.txt
 			personas.close();
 			break;
@@ -766,12 +769,16 @@ void funcionPrincipal(int opcionPrincipal){
 				}			
 			}while(sel!=9);
 			//Este string es una concatenacion  de todos los datos cambiados de la nueva persona
+			char auxid[2];
+			itoa(intid, auxid, 10);
+			string id(auxid);
 			string dato;
-			dato = auxNom+":"+auxApe+":"+Persona.retornarTi(intid)+":"+Persona.retornarNumId(intid)+":"+Persona.retornarGe(intid)+":"+auxFij+":"+auxCel+":"+auxCor+":"+Persona.retornarFn(intid)+
+			dato =id+":"+auxNom+":"+auxApe+":"+Persona.retornarTi(intid)+":"+Persona.retornarNumId(intid)+":"+Persona.retornarGe(intid)+":"+auxFij+":"+auxCel+":"+auxCor+":"+Persona.retornarFn(intid)+
 				":"+Persona.retornarEd(intid)+":"+Persona.retornarCn(intid)+":"+Persona.retornarPn(intid)+":"+Persona.retornarCr(intid)+":"+auxDir+":"+auxBar+":"+Persona.retornarAc(intid)+
 				":"+auxhij+":"+auxnumHij+":"+Persona.retornarSu(intid);
 				
 			cout<<"Datos "<<dato<<endl;
+			fclose(archivo);
 			// llamado a la funcion editar que cambiara todos los datos que deba
 			editar(dato, intid);
 			break;
@@ -880,7 +887,7 @@ void eliminar(){
 void editar(string dato, int pos){
 	
 		char linea[200];
-		strcpy(linea,Ciudad.dato.c_str());
+		strcpy(linea,dato.c_str());
 	
 		FILE *archOrig, *archAux;  //Crea archivo original y archivo auxiliar
 		int del_line_num;
@@ -902,7 +909,7 @@ void editar(string dato, int pos){
 			if(line_num != pos){  // Si la linea es diferente a la posicion que editamos lo agrega normal
 				fputs(str, archAux);
 			}else{
-				fputs(dato, archAux); // Si la linea coincide con la posicion que editamos lo que copiaremos al archivo es la informacion que se cambio
+				fputs(linea, archAux); // Si la linea coincide con la posicion que editamos lo que copiaremos al archivo es la informacion que se cambio
 			}
 		}
 		
